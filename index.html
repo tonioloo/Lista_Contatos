@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de contatos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+    <main>
+      <div class="container">
+        <header>
+          <img src="images/imagem_contato.png" alt="contato" />
+        </header>
+      <form>
+        <input type="hidden" name="id" />
+        <input class="campos" name="nome" type="text" maxlength="50" placeholder="Nome do contato" required />
+        <input class="campos" name="telefone" type="text" maxlength="50" placeholder="Telefone" required />
+        <input id="salvar" type="submit" value="Salvar" />
+      </form>
+      <div class="list">
+        <input type="text" placeholder="Pesquisar" onkeyup="listar(this.value)" />
+        <ul>
+          
+        </ul>
+      </div>
+    </div>
+    </main>
+</body>
+</html>
+
