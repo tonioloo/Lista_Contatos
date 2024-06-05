@@ -1,6 +1,6 @@
 let lista = localStorage.getItem("minhaLista");
 const formulario = document.querySelector("form");
-const ulPessoas = document.querySelector("ul");
+const ulProduto = document.querySelector("ul");
 
 if(lista) {
   lista = JSON.parse(lista);
@@ -12,13 +12,15 @@ listar();
 
 formulario.addEventListener("submit", function (e) {
   e.preventDefault();
-  let novaPessoa = new Object();
-  novaPessoa.nome = this.nome.value;
-  novaPessoa.telefone = this.telefone.value;
+  let novoProduto = new Object();
+  novoProduto.ip = this.ip.value;
+  novoProduto.tipo = this.tipo.value;
+  novoProduto.manutencao = this.manutencao.value;
+  novoProduto.local = this.local.value;
   if (this.id.value !=="" && this.id.value >=0) {
-    lista[this.id.vale] = novaPessoa;
+    lista[this.id.value] = novoProduto;
   } else {
-    lista.push(novaPessoa);
+    lista.push(novoProduto);
   }
 
   this.reset();
@@ -30,17 +32,17 @@ formulario.addEventListener("submit", function (e) {
 })
 
 function listar(filtro='') {
-  ulPessoas.innerHTML = "";
+  ulProduto.innerHTML = "";
   lista.forEach((item,key) => {
 
-    if (item.nome.toUpperCase().indexOf(filtro.toUpperCase()) >=0 || filtro == "") {
+    if (item.ip.toUpperCase().indexOf(filtro.toUpperCase()) >=0 || filtro == "") {
     linha = document.createElement('li');
     
-    let s = `<button onClick="excluir(${key})">[Excluir]</button>
-            <button onClick="editar(${key})">[Editar]</button>`
+    let s = `<button onClick="excluir(${key})">Excluir</button>
+            <button onClick="editar(${key})">Editar</button>`
 
-    linha.innerHTML = "Nome: " + item.nome + "Telefone: " + item.telefone + s;
-    ulPessoas.appendChild(linha);
+    linha.innerHTML = "IP: "+ item.ip + "\n Tipo: " + item.tipo + "\n Local: " + item.local + "\n Última manutenção: " + item.manutencao + s;
+    ulProduto.appendChild(linha);
     }
   });
 }
@@ -54,8 +56,9 @@ function excluir(id) {
 
 function editar(id) {
   formulario.id.value = id;
-  formulario.nome.value = lista[id].nome;
-  formulario.telefone.value = lista[id].telefone;
+  formulario.ip.value = lista[id].ip;
+  formulario.tipo.value = lista[id].tipo;
+  formulario.manutencao.value = lista[id].manutencao;
 }
 
 function salvarLS(lista) {
